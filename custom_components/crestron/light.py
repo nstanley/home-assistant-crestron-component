@@ -70,6 +70,21 @@ class CrestronLight(LightEntity):
             else:
                 return False
 
+    @property
+    def unique_id(self):
+        return self._brightness_join
+
+    @property
+    def device_info(self):
+        return {
+            "identifiers": self.unique_id,
+            "name": self._name,
+            "manufacturer": "Crestron",
+            "model": "Light",
+            "sw_version": "0.2.5",
+            "via_device": self._hub,
+        }
+
     async def async_turn_on(self, **kwargs):
         if "brightness" in kwargs:
             self._hub.set_analog(self._brightness_join, int(kwargs["brightness"] * 255))
