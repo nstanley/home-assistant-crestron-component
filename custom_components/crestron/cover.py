@@ -76,6 +76,21 @@ class CrestronShade(CoverEntity):
         self.async_write_ha_state()
 
     @property
+    def unique_id(self):
+        return self._pos_join
+
+    @property
+    def device_info(self):
+        return {
+            "identifiers": self.unique_id,
+            "name": self._name,
+            "manufacturer": "Crestron",
+            "model": "Cover",
+            "sw_version": "0.2.6",
+            "via_device": self._hub,
+        }
+
+    @property
     def available(self):
         return self._hub.is_available()
 

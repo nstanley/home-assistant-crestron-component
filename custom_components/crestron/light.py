@@ -81,7 +81,7 @@ class CrestronLight(LightEntity):
             "name": self._name,
             "manufacturer": "Crestron",
             "model": "Light",
-            "sw_version": "0.2.5",
+            "sw_version": "0.2.6",
             "via_device": self._hub,
         }
 

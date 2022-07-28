@@ -73,6 +73,21 @@ class CrestronRoom(MediaPlayerEntity):
         self.async_write_ha_state()
 
     @property
+    def unique_id(self):
+        return self._source_number_join
+
+    @property
+    def device_info(self):
+        return {
+            "identifiers": self.unique_id,
+            "name": self._name,
+            "manufacturer": "Crestron",
+            "model": "Media Player",
+            "sw_version": "0.2.6",
+            "via_device": self._hub,
+        }
+
+    @property
     def available(self):
         return self._hub.is_available()
 
